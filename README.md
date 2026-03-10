@@ -78,4 +78,4 @@ Pull requests are welcome. Please open an issue first to discuss significant cha
 
 ## License
 
-[MIT](LICENSE)
+[Apache 2.0](LICENSE)
