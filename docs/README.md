@@ -7,6 +7,7 @@ This directory contains the development plan and feature specifications for Wiew
 | File / Directory | Description |
 |-----------------|-------------|
 | [development-plan.md](development-plan.md) | Phased roadmap with tasks and milestones |
+| [tunneling-options.md](tunneling-options.md) | Comparison of tunneling backends with pros and cons |
 | [features/](features/) | Individual feature specifications |
 
 ## Development Plan
