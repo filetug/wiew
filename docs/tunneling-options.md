@@ -11,6 +11,7 @@ See [features/secure-tunneling.md](features/secure-tunneling.md) for the feature
 | Solution | Free Tier | Account Required | Install Required | SSH-based | Self-hostable | Custom Domain |
 |----------|-----------|-----------------|-----------------|-----------|--------------|---------------|
 | **Inline URL** | Yes | No | No | No | Yes | — |
+| **Wiew WebSocket Relay** | Yes | No | No | No | Yes | — |
 | Cloudflare Tunnel | Yes (Quick Tunnels) | No (Quick Tunnels) | Yes (`cloudflared`) | No | Partial | Yes (named tunnels) |
 | ngrok | Yes (limited) | Yes | Yes | No | No | Paid |
 | localtunnel | Yes (unlimited) | No | Yes (`npm`) | No | Yes | Subdomain hint |
@@ -52,7 +53,37 @@ The `wiew.sh/v` page is a static HTML file that reads the fragment client-side a
 
 ---
 
-### 1. Cloudflare Tunnel (`cloudflared`)
+### 1. Wiew WebSocket Relay (Built-in)
+
+A built-in relay server hosted at `wiew.sh` that proxies traffic between the browser and the local Wiew process over a persistent WebSocket connection. Requires no installation and no account — the relay is part of the Wiew infrastructure.
+
+```
+wiew (local) ──WebSocket──▶ wiew.sh/relay ◀──HTTPS──▶ browser
+```
+
+URL format:
+```
+https://wiew.sh/s/<session-id>#<token>
+```
+
+**Pros**
+- No install, no account, no third-party dependency
+- Always available as a guaranteed fallback
+- Token in URL fragment ensures only the intended recipient can connect
+- WebSocket support (required for live reload and edit mode)
+- Fully under Wiew's control — no external service dependency
+- Self-hostable: operators can point `--relay-url` at their own relay instance
+
+**Cons**
+- Relay server must be running and reachable (operational burden on Wiew project)
+- All traffic transits the `wiew.sh` relay infrastructure
+- Higher latency than direct tunnels (double-hop: local → relay → browser)
+- No persistent or named URLs — session ID changes on every run
+- Bandwidth costs borne by the Wiew project
+
+---
+
+### 2. Cloudflare Tunnel (`cloudflared`)
 
 Quick Tunnels provide an ephemeral public URL with no account or configuration required — just a binary.
 
@@ -92,7 +123,7 @@ The most widely known tunneling service, with a polished CLI and official Go SDK
 
 ---
 
-### 3. localtunnel
+### 4. localtunnel
 
 Simple open-source tunneling via a Node.js service.
 
@@ -111,7 +142,7 @@ Simple open-source tunneling via a Node.js service.
 
 ---
 
-### 4. bore
+### 5. bore
 
 A minimal, self-hostable reverse proxy tunnel written in Rust.
 
@@ -130,7 +161,7 @@ A minimal, self-hostable reverse proxy tunnel written in Rust.
 
 ---
 
-### 5. serveo
+### 6. serveo
 
 SSH-based tunneling with no installation required — uses the system's existing SSH client.
 
@@ -149,7 +180,7 @@ SSH-based tunneling with no installation required — uses the system's existing
 
 ---
 
-### 6. localhost.run
+### 7. localhost.run
 
 SSH-based tunneling similar to serveo, operated as a commercial service.
 
@@ -167,7 +198,7 @@ SSH-based tunneling similar to serveo, operated as a commercial service.
 
 ---
 
-### 7. Pinggy
+### 8. Pinggy
 
 SSH-based tunneling with a focus on simplicity and QR code sharing.
 
@@ -185,7 +216,7 @@ SSH-based tunneling with a focus on simplicity and QR code sharing.
 
 ---
 
-### 8. Tailscale Funnel
+### 9. Tailscale Funnel
 
 Exposes a local service to the internet via Tailscale's network.
 
@@ -202,7 +233,7 @@ Exposes a local service to the internet via Tailscale's network.
 
 ---
 
-### 9. zrok
+### 10. zrok
 
 Open-source self-hostable alternative to ngrok, built on OpenZiti.
 
@@ -221,7 +252,7 @@ Open-source self-hostable alternative to ngrok, built on OpenZiti.
 
 ---
 
-### 10. PageKite
+### 11. PageKite
 
 Long-standing tunneling service, popular in the open-source community.
 
