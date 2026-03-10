@@ -10,6 +10,7 @@ See [features/secure-tunneling.md](features/secure-tunneling.md) for the feature
 
 | Solution | Free Tier | Account Required | Install Required | SSH-based | Self-hostable | Custom Domain |
 |----------|-----------|-----------------|-----------------|-----------|--------------|---------------|
+| **Inline URL** | Yes | No | No | No | Yes | — |
 | Cloudflare Tunnel | Yes (Quick Tunnels) | No (Quick Tunnels) | Yes (`cloudflared`) | No | Partial | Yes (named tunnels) |
 | ngrok | Yes (limited) | Yes | Yes | No | No | Paid |
 | localtunnel | Yes (unlimited) | No | Yes (`npm`) | No | Yes | Subdomain hint |
@@ -24,6 +25,32 @@ See [features/secure-tunneling.md](features/secure-tunneling.md) for the feature
 ---
 
 ## Options
+
+### 0. Inline URL (Built-in)
+
+For small files (≤ 50 KB by default), Wiew encodes the file's metadata and content directly into the URL fragment and generates a self-contained `wiew.sh/v#<payload>` link. No tunnel, no local server, no third-party dependency.
+
+```
+https://wiew.sh/v#<base64url(gzip({"name":"README.md","content":"...",...}))>
+```
+
+The `wiew.sh/v` page is a static HTML file that reads the fragment client-side and renders the Markdown in the browser. The file content is **never transmitted to any server** — it stays entirely in the browser via the URL fragment.
+
+**Pros**
+- No install, no account, no running process required
+- Instant — URL is generated locally in milliseconds
+- Content never leaves the browser (fragment is not sent in HTTP requests)
+- Shareable link that works even after Wiew exits
+- No dependency on any third-party infrastructure
+
+**Cons**
+- Only practical for small files (≤ ~50 KB uncompressed Markdown)
+- URL can be long (tens of kilobytes base64url-encoded in the fragment)
+- No live reload — link is a snapshot of the file at generation time
+- Edit mode not supported (no persistent connection back to local machine)
+- Not suitable for files with locally-referenced binary assets (images, etc.)
+
+---
 
 ### 1. Cloudflare Tunnel (`cloudflared`)
 
@@ -217,6 +244,7 @@ For Wiew's use case — ephemeral, no-account-required, zero-friction tunneling 
 
 | Priority | Option | Reason |
 |----------|--------|--------|
+| 0th | **Inline URL** | No install, no account, instant, content stays in browser |
 | 1st | **Cloudflare Tunnel** | No account, reliable, HTTPS, WebSocket support |
 | 2nd | **ngrok** | Best Go SDK, easiest in-process integration (requires account) |
 | 3rd | **serveo / localhost.run** | Zero install fallback using system SSH |
@@ -224,6 +252,7 @@ For Wiew's use case — ephemeral, no-account-required, zero-friction tunneling 
 
 The `--tunnel` flag lets users choose their preferred backend. Detection order when `--tunnel` is not set:
 
+0. File ≤ 50 KB → **Inline URL** (no tunnel started)
 1. `cloudflared` in `$PATH`
 2. `ngrok` in `$PATH` (with `NGROK_AUTHTOKEN` env var)
 3. `ssh` available → use `localhost.run`
