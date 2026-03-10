@@ -1,4 +1,4 @@
-# Wiew
+# [Wiew.sh](https://wiew.sh)
 
 > Preview and edit Markdown files from the terminal — including over SSH.
 
