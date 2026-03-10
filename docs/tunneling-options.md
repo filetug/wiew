@@ -12,16 +12,16 @@ See [features/secure-tunneling.md](features/secure-tunneling.md) for the feature
 |----------|-----------|-----------------|-----------------|-----------|--------------|---------------|
 | **Inline URL** | Yes | No | No | No | Yes | — |
 | **Wiew WebSocket Relay** | Yes | No | No | No | Yes | — |
-| Cloudflare Tunnel | Yes (Quick Tunnels) | No (Quick Tunnels) | Yes (`cloudflared`) | No | Partial | Yes (named tunnels) |
-| ngrok | Yes (limited) | Yes | Yes | No | No | Paid |
-| localtunnel | Yes (unlimited) | No | Yes (`npm`) | No | Yes | Subdomain hint |
-| bore | Yes | No | Yes (binary) | No | Yes | No |
-| serveo | Yes | No | No | Yes | No | Subdomain hint |
-| localhost.run | Yes | No | No | Yes | No | Paid |
-| Pinggy | Yes (limited) | No (anon) / Yes | No | Yes | No | Paid |
-| Tailscale Funnel | Yes | Yes | Yes | No | No | Fixed |
-| zrok | Yes | Yes | Yes (binary) | No | Yes | Yes |
-| PageKite | Free for OSS | Yes | Yes (Python) | No | Yes | Yes |
+| [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/) | Yes (Quick Tunnels) | No (Quick Tunnels) | Yes (`cloudflared`) | No | Partial | Yes (named tunnels) |
+| [ngrok](https://ngrok.com) | Yes (limited) | Yes | Yes | No | No | Paid |
+| [localtunnel](https://github.com/localtunnel/localtunnel) | Yes (unlimited) | No | Yes (`npm`) | No | Yes | Subdomain hint |
+| [bore](https://github.com/ekzhang/bore) | Yes | No | Yes (binary) | No | Yes | No |
+| [serveo](https://serveo.net) | Yes | No | No | Yes | No | Subdomain hint |
+| [localhost.run](https://localhost.run) | Yes | No | No | Yes | No | Paid |
+| [Pinggy](https://pinggy.io) | Yes (limited) | No (anon) / Yes | No | Yes | No | Paid |
+| [Tailscale Funnel](https://tailscale.com/kb/1223/funnel) | Yes | Yes | Yes | No | No | Fixed |
+| [zrok](https://zrok.io) | Yes | Yes | Yes (binary) | No | Yes | Yes |
+| [PageKite](https://pagekite.net) | Free for OSS | Yes | Yes (Python) | No | Yes | Yes |
 
 ---
 
@@ -83,7 +83,7 @@ https://wiew.sh/s/<session-id>#<token>
 
 ---
 
-### 2. Cloudflare Tunnel (`cloudflared`)
+### 2. [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/) (`cloudflared`)
 
 Quick Tunnels provide an ephemeral public URL with no account or configuration required — just a binary.
 
@@ -104,7 +104,7 @@ Quick Tunnels provide an ephemeral public URL with no account or configuration r
 
 ---
 
-### 2. ngrok
+### 3. [ngrok](https://ngrok.com)
 
 The most widely known tunneling service, with a polished CLI and official Go SDK.
 
@@ -123,7 +123,7 @@ The most widely known tunneling service, with a polished CLI and official Go SDK
 
 ---
 
-### 4. localtunnel
+### 4. [localtunnel](https://github.com/localtunnel/localtunnel)
 
 Simple open-source tunneling via a Node.js service.
 
@@ -142,7 +142,7 @@ Simple open-source tunneling via a Node.js service.
 
 ---
 
-### 5. bore
+### 5. [bore](https://github.com/ekzhang/bore)
 
 A minimal, self-hostable reverse proxy tunnel written in Rust.
 
@@ -161,7 +161,7 @@ A minimal, self-hostable reverse proxy tunnel written in Rust.
 
 ---
 
-### 6. serveo
+### 6. [serveo](https://serveo.net)
 
 SSH-based tunneling with no installation required — uses the system's existing SSH client.
 
@@ -180,7 +180,7 @@ SSH-based tunneling with no installation required — uses the system's existing
 
 ---
 
-### 7. localhost.run
+### 7. [localhost.run](https://localhost.run)
 
 SSH-based tunneling similar to serveo, operated as a commercial service.
 
@@ -198,7 +198,7 @@ SSH-based tunneling similar to serveo, operated as a commercial service.
 
 ---
 
-### 8. Pinggy
+### 8. [Pinggy](https://pinggy.io)
 
 SSH-based tunneling with a focus on simplicity and QR code sharing.
 
@@ -216,7 +216,7 @@ SSH-based tunneling with a focus on simplicity and QR code sharing.
 
 ---
 
-### 9. Tailscale Funnel
+### 9. [Tailscale Funnel](https://tailscale.com/kb/1223/funnel)
 
 Exposes a local service to the internet via Tailscale's network.
 
@@ -233,7 +233,7 @@ Exposes a local service to the internet via Tailscale's network.
 
 ---
 
-### 10. zrok
+### 10. [zrok](https://zrok.io)
 
 Open-source self-hostable alternative to ngrok, built on OpenZiti.
 
@@ -252,7 +252,7 @@ Open-source self-hostable alternative to ngrok, built on OpenZiti.
 
 ---
 
-### 11. PageKite
+### 11. [PageKite](https://pagekite.net)
 
 Long-standing tunneling service, popular in the open-source community.
 
